@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Station1CameraLook : MonoBehaviour {
+public class StationCameraLook : MonoBehaviour {
 
     [SerializeField] private Camera gunCam;
 

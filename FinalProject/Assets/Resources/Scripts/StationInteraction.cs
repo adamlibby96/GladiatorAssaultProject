@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Station1InteractCamera : MonoBehaviour
+public class StationInteraction : MonoBehaviour
 {
 
     [SerializeField] private Camera mainCam;

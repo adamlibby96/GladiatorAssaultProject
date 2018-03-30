@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Station1FireWeapon : MonoBehaviour {
+public class StationFireWeapon : MonoBehaviour {
     [SerializeField] private Transform BulletSpawnLoc;
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Station1InteractCamera interact;
+    [SerializeField] private StationInteraction interact;
 
     private GameObject bullet;
     private Rigidbody rb;
 
     public float Vi = 3f;
+
 	// Use this for initialization
 	void Start () {
         
