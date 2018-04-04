@@ -2830,7 +2830,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1050547290021030, guid: 17e761e0a1a5e1b408e08f7ba2e5b914,
     type: 2}
   interact: {fileID: 1369108682}
-  Vi: 50
 --- !u!114 &724542403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6911,16 +6910,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538073040}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcae70155ad1e8e44bf36ffdf3cd074d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BulletSpawnLoc: {fileID: 1671775657}
-  bulletPrefab: {fileID: 1050547290021030, guid: 17e761e0a1a5e1b408e08f7ba2e5b914,
+  bulletPrefab: {fileID: 1059518364435894, guid: 84aa4d541094e064cb57d9b42458c590,
     type: 2}
   interact: {fileID: 264259616}
-  Vi: 45
 --- !u!1001 &1559589206
 Prefab:
   m_ObjectHideFlags: 0
@@ -7139,7 +7137,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1050547290021030, guid: 17e761e0a1a5e1b408e08f7ba2e5b914,
     type: 2}
   interact: {fileID: 1295989691}
-  Vi: 50
 --- !u!114 &1583285299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7539,7 +7536,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1671775656}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0, y: 0.057, z: -0.93}
+  m_LocalPosition: {x: -0, y: 0.057, z: -0.632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1538073041}
@@ -7710,7 +7707,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1050547290021030, guid: 17e761e0a1a5e1b408e08f7ba2e5b914,
     type: 2}
   interact: {fileID: 732171453}
-  Vi: 50
 --- !u!114 &1717286044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7907,7 +7903,7 @@ GameObject:
   - component: {fileID: 1734679279}
   m_Layer: 0
   m_Name: Player Holder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8289,7 +8285,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1050547290021030, guid: 17e761e0a1a5e1b408e08f7ba2e5b914,
     type: 2}
   interact: {fileID: 1463860477}
-  Vi: 30
 --- !u!114 &1751428593
 MonoBehaviour:
   m_ObjectHideFlags: 0

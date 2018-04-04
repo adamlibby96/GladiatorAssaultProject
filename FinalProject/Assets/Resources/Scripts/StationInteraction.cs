@@ -54,6 +54,7 @@ public class StationInteraction : MonoBehaviour
 
     public bool canfire()
     {
+        Debug.Log("canfire: " + canWeaponFire);
         return canWeaponFire;
     }
 

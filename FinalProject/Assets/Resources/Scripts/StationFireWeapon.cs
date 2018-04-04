@@ -7,10 +7,12 @@ public class StationFireWeapon : MonoBehaviour {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private StationInteraction interact;
 
-    private GameObject bullet;
-    private Rigidbody rb;
+    private int shotCount = 2;
 
-    public float Vi = 3f;
+    private GameObject bullet;
+    //private Rigidbody rb;
+
+    //public float Vi = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -20,17 +22,25 @@ public class StationFireWeapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown(0) && interact.canfire())
+        //Debug.Log("calling??");
+		if (Input.GetMouseButtonDown(0) && interact.canfire() )
         {
-            bullet = Instantiate(bulletPrefab) as GameObject;
-            bullet.transform.position = BulletSpawnLoc.position;
-            bullet.transform.rotation = BulletSpawnLoc.rotation;
+            Debug.Log("fire");
+            if (shotCount > 0)
+            {
+                bullet = Instantiate(bulletPrefab) as GameObject;
+                Debug.Log(bullet.ToString());
+                bullet.transform.position = BulletSpawnLoc.position;
+                bullet.transform.rotation = BulletSpawnLoc.rotation;
+                bullet.GetComponent<Bullet>().setSpeed(50f);
+                bullet.GetComponent<Bullet>().fire();
+                shotCount--;
+            }
 
-            rb = bullet.GetComponent<Rigidbody>();
-            rb.useGravity = true;
-            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-
-            rb.velocity = BulletSpawnLoc.transform.forward * Vi;
+            // rb = bullet.GetComponent<Rigidbody>();
+            // rb.useGravity = true;
+            // rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            // rb.velocity = BulletSpawnLoc.transform.forward * Vi;
         }
 	}
 }
