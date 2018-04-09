@@ -36,8 +36,6 @@ public class BowAimer : MonoBehaviour {
             }
         }
 	}
-
-
     
     private IEnumerator bowAimer(float dur)
     {
