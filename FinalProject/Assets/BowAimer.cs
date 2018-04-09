@@ -27,11 +27,11 @@ public class BowAimer : MonoBehaviour {
             {
                 if (!isAim)
                 {
-                    StartCoroutine(bowAimer(transform.position, aimPos.position, duration));
+                    StartCoroutine(bowAimer(duration));
                 }
                 else
                 {
-                    StartCoroutine(bowAimer(transform.position, origPos.position, duration));
+                    StartCoroutine(bowAimer(duration));
                 }
             }
         }
@@ -39,14 +39,21 @@ public class BowAimer : MonoBehaviour {
 
 
     
-    private IEnumerator bowAimer(Vector3 start, Vector3 end, float dur)
+    private IEnumerator bowAimer(float dur)
     {
         aiming = true;
         float elapsed = 0f;
         while (elapsed <= dur)
         {
             float pct = elapsed / dur;
-            transform.position = Vector3.Lerp(start, end, pct);
+            if (isAim)
+            {
+                transform.position = Vector3.Lerp(aimPos.position, origPos.position, pct);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(origPos.position, aimPos.position, pct);
+            }
             elapsed += Time.deltaTime;
             yield return null;
         }
