@@ -6,6 +6,7 @@ public class StationCameraLook : MonoBehaviour {
 
     [SerializeField] private Camera gunCam;
 
+
     private float rotX;
     private float rotY;
     private Quaternion origRot;
@@ -40,7 +41,6 @@ public class StationCameraLook : MonoBehaviour {
             transform.localEulerAngles = newRot.eulerAngles;
 
             origRot = newRot;
-
         }
 
     }

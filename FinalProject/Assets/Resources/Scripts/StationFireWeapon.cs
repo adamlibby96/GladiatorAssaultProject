@@ -6,41 +6,61 @@ public class StationFireWeapon : MonoBehaviour {
     [SerializeField] private Transform BulletSpawnLoc;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private StationInteraction interact;
+    [SerializeField] private BowAimer bow;
 
-    private int shotCount = 2;
+    private int shotCount = 10;
 
-    private GameObject bullet;
-    //private Rigidbody rb;
+   
+    private Rigidbody rb;
 
-    //public float Vi = 3f;
+    public float Vi = 40f;
 
-	// Use this for initialization
-	void Start () {
-        
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //Debug.Log("calling??");
-		if (Input.GetMouseButtonDown(0) && interact.canfire() )
+
+    // Update is called once per frame
+    void Update () {
+
+        if (interact.canfire())
         {
-            Debug.Log("fire");
-            if (shotCount > 0)
+            bow.canAim = true;
+            if (Input.GetMouseButtonDown(0))
             {
-                bullet = Instantiate(bulletPrefab) as GameObject;
-                Debug.Log(bullet.ToString());
-                bullet.transform.position = BulletSpawnLoc.position;
-                bullet.transform.rotation = BulletSpawnLoc.rotation;
-                bullet.GetComponent<Bullet>().setSpeed(50f);
-                bullet.GetComponent<Bullet>().fire();
-                shotCount--;
+                if (shotCount > 0)
+                {
+                    StartCoroutine(shootArrow());
+                    shotCount--;
+                }
             }
-
-            // rb = bullet.GetComponent<Rigidbody>();
-            // rb.useGravity = true;
-            // rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-            // rb.velocity = BulletSpawnLoc.transform.forward * Vi;
         }
 	}
+
+
+
+    private IEnumerator shootArrow()
+    {
+        GameObject bullet;
+        bool collide = false;
+        bullet = Instantiate(bulletPrefab) as GameObject;
+
+        bullet.transform.position = BulletSpawnLoc.position;
+        bullet.transform.rotation = BulletSpawnLoc.rotation;
+
+        rb = bullet.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        // rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+        rb.velocity = BulletSpawnLoc.transform.forward * Vi;
+
+        while (!collide)
+        {
+            //bullet.transform.forward = Vector3.Slerp(bullet.transform.forward, rb.velocity.normalized, Time.deltaTime);
+            collide = bullet.GetComponent<ArrowScript>().collide;
+
+            yield return null;
+        }
+
+        if (collide)
+        {
+            Debug.Log("Hit");
+        }
+    }
 }

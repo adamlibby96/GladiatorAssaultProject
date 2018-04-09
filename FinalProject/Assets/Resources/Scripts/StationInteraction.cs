@@ -30,6 +30,7 @@ public class StationInteraction : MonoBehaviour
             mainCam.enabled = !mainCam.enabled;
             gunCam.enabled = !gunCam.enabled;
             canWeaponFire = gunCam.enabled;
+            //Debug.Log(canWeaponFire + ": can weapon fire?");
             stationCanvas.enabled = gunCam.enabled;
             player.gameObject.SetActive(mainCam.enabled);
         }
@@ -54,7 +55,7 @@ public class StationInteraction : MonoBehaviour
 
     public bool canfire()
     {
-        Debug.Log("canfire: " + canWeaponFire);
+        //Debug.Log("canfire: " + canWeaponFire);
         return canWeaponFire;
     }
 
