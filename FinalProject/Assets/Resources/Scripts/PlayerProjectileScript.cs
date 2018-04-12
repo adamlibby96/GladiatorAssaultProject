@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerProjectileScript : MonoBehaviour {
 
     public bool collide { get; private set; }
-    
+
+
 
 	// Use this for initialization
 	void Start () {
-        collide = false; 
-	}
+        collide = false;
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,6 +22,7 @@ public class PlayerProjectileScript : MonoBehaviour {
             transform.LookAt(transform.position + transform.GetComponent<Rigidbody>().velocity);
         }
 
+       
         //transform.forward = Vector3.Slerp(transform.forward, transform.GetComponent<Rigidbody>().velocity.normalized, Time.deltaTime);
     }
 

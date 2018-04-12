@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonAimScript : MonoBehaviour {
-
+public class SniperAimer : MonoBehaviour {
+    [SerializeField] private Camera gunCam;
+    [SerializeField] private Canvas sniperCanvas;
     [SerializeField] private Transform origPos;
     [SerializeField] private Transform aimPos;
     [SerializeField] private float duration = 1f;
+    [SerializeField] private float cameraZoom = 15f;
     public bool canAim { get; set; }
     private bool isAim = false;
     private bool aiming = false;
-    private float elapsed = 0f;
-
+    private float origZoom;
+    
     private void Start()
     {
+        origZoom = gunCam.fieldOfView;
+        sniperCanvas.enabled = false; 
         transform.position = origPos.position;
     }
 
@@ -26,17 +30,22 @@ public class CannonAimScript : MonoBehaviour {
             {
                 if (!isAim)
                 {
-                    StartCoroutine(cannonAimer(duration));
+                    StartCoroutine(sniperAimer(duration));
                 }
                 else
                 {
-                    StartCoroutine(cannonAimer(duration));
+                    gunCam.fieldOfView = origZoom;
+                    gameObject.GetComponent<MeshRenderer>().enabled = true;
+                    sniperCanvas.enabled = false;
+                    StartCoroutine(sniperAimer(duration));
                 }
             }
         }
+
+
     }
 
-    private IEnumerator cannonAimer(float dur)
+    private IEnumerator sniperAimer(float dur)
     {
         aiming = true;
         float elapsed = 0f;
@@ -54,8 +63,20 @@ public class CannonAimScript : MonoBehaviour {
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (isAim)
+        {
+            transform.position = origPos.position;
+        }
+        else
+        {
+            transform.position = aimPos.position;
+            gunCam.fieldOfView = cameraZoom;
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            sniperCanvas.enabled = true;
+        }
+
         isAim = !isAim;
         aiming = false;
     }
-
 }

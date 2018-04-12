@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlaregunAimer : MonoBehaviour
-{
+public class CannonAimScript : MonoBehaviour {
 
     [SerializeField] private Transform origPos;
     [SerializeField] private Transform aimPos;
@@ -11,7 +10,6 @@ public class FlaregunAimer : MonoBehaviour
     public bool canAim { get; set; }
     private bool isAim = false;
     private bool aiming = false;
-    private float elapsed = 0f;
 
     private void Start()
     {
@@ -27,17 +25,17 @@ public class FlaregunAimer : MonoBehaviour
             {
                 if (!isAim)
                 {
-                    StartCoroutine(aimFlare(duration));
+                    StartCoroutine(cannonAimer(duration));
                 }
                 else
                 {
-                    StartCoroutine(aimFlare(duration));
+                    StartCoroutine(cannonAimer(duration));
                 }
             }
         }
     }
 
-    private IEnumerator aimFlare(float dur)
+    private IEnumerator cannonAimer(float dur)
     {
         aiming = true;
         float elapsed = 0f;
@@ -55,6 +53,16 @@ public class FlaregunAimer : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (isAim)
+        {
+            transform.position = origPos.position;
+        }
+        else
+        {
+            transform.position = aimPos.position;
+        }
+
         isAim = !isAim;
         aiming = false;
     }

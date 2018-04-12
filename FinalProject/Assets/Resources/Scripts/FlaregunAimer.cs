@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowAimer : MonoBehaviour {
+public class FlaregunAimer : MonoBehaviour
+{
 
     [SerializeField] private Transform origPos;
     [SerializeField] private Transform aimPos;
@@ -10,34 +11,32 @@ public class BowAimer : MonoBehaviour {
     public bool canAim { get; set; }
     private bool isAim = false;
     private bool aiming = false;
-    private float elapsed = 0f;
-    private Vector3 moveDirection;
 
     private void Start()
     {
         transform.position = origPos.position;
-        moveDirection = (aimPos.position - origPos.position);
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (canAim)
         {
             if (Input.GetMouseButtonDown(1) && !aiming)
             {
                 if (!isAim)
                 {
-                    StartCoroutine(bowAimer(duration));
+                    StartCoroutine(aimFlare(duration));
                 }
                 else
                 {
-                    StartCoroutine(bowAimer(duration));
+                    StartCoroutine(aimFlare(duration));
                 }
             }
         }
-	}
-    
-    private IEnumerator bowAimer(float dur)
+    }
+
+    private IEnumerator aimFlare(float dur)
     {
         aiming = true;
         float elapsed = 0f;
@@ -55,8 +54,18 @@ public class BowAimer : MonoBehaviour {
             elapsed += Time.deltaTime;
             yield return null;
         }
+
+        if (isAim)
+        {
+            transform.position = origPos.position;
+        }
+        else
+        {
+            transform.position = aimPos.position;
+        }
+
         isAim = !isAim;
         aiming = false;
     }
-    
+
 }

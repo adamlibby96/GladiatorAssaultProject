@@ -8,7 +8,6 @@ public class StationInteraction : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private Camera gunCam;
     [SerializeField] private GameObject player;
-    [SerializeField] private Canvas stationCanvas;
 
     private bool playerIn = false;
     private bool canWeaponFire = false;
@@ -18,8 +17,6 @@ public class StationInteraction : MonoBehaviour
     {
         mainCam.enabled = true;
         gunCam.enabled = false;
-        stationCanvas.enabled = false;
-
     }
 
     // Update is called once per frame
@@ -30,8 +27,6 @@ public class StationInteraction : MonoBehaviour
             mainCam.enabled = !mainCam.enabled;
             gunCam.enabled = !gunCam.enabled;
             canWeaponFire = gunCam.enabled;
-            //Debug.Log(canWeaponFire + ": can weapon fire?");
-            stationCanvas.enabled = gunCam.enabled;
             player.gameObject.SetActive(mainCam.enabled);
         }
     }
@@ -55,7 +50,6 @@ public class StationInteraction : MonoBehaviour
 
     public bool canfire()
     {
-        //Debug.Log("canfire: " + canWeaponFire);
         return canWeaponFire;
     }
 
