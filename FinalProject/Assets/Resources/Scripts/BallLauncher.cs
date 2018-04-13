@@ -22,8 +22,32 @@ public class BallLauncher : MonoBehaviour
 
     void Start()
     {
+        Messenger.AddListener(GameEvent.GAME_START, startLaunching);
+        Messenger.AddListener(GameEvent.GAME_OVER, stopLaunching);
+    }
 
-       // ball.useGravity = false;
+    void Awake()
+    {
+        Messenger.AddListener(GameEvent.GAME_START, startLaunching);
+        Messenger.AddListener(GameEvent.GAME_OVER, stopLaunching);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.GAME_START, startLaunching);
+        Messenger.RemoveListener(GameEvent.GAME_OVER, stopLaunching);
+    }
+
+    private void stopLaunching()
+    {
+        keepLaunchingBall = false;
+        StopCoroutine(keepLaunching());
+    }
+
+    private void startLaunching()
+    {
+        keepLaunchingBall = true;
+        StartCoroutine(keepLaunching());
     }
 
     void Update()

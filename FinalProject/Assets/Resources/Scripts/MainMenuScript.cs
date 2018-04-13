@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private GameObject optionsMenuCanvas;
     [SerializeField] private GameObject loadingScreenCanvas;
     [SerializeField] private Slider loadBar;
+    [SerializeField] private Slider mouseSensitivity;
     [SerializeField] private TextMeshProUGUI loadTextPercentage;
+    [SerializeField] private TextMeshProUGUI mouseSensitivityText;
 
     private void Start()
     {
         mainMenuCanvas.SetActive(true);
         optionsMenuCanvas.SetActive(false);
         loadingScreenCanvas.SetActive(false);
+        mouseSensitivity.value = PlayerPrefs.GetFloat("Mouse Speed");
     }
 
 
@@ -58,5 +62,22 @@ public class MainMenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void SetMouseSpeed(float speed)
+    {
+        mouseSensitivityText.text = "Mouse Speed: " + Math.Round(speed, 2);
+        PlayerPrefs.SetFloat("Mouse Speed", speed);
+    }
+
+
+    public void SetGameDifficulty(int val)
+    {
+        Debug.Log(val);
+        PlayerPrefs.SetFloat("Difficulty", val);
+    }
+
+    public void ResetFastestTime()
+    {
+        PlayerPrefs.DeleteKey("Fastest Time");
+    }
 
 }

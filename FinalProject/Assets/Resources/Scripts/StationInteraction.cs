@@ -8,13 +8,16 @@ public class StationInteraction : MonoBehaviour
     [SerializeField] private Camera mainCam;
     [SerializeField] private Camera gunCam;
     [SerializeField] private GameObject player;
-
+    [SerializeField] private GameObject restingGun;
+    [SerializeField] private GameObject shootingGun;
     private bool playerIn = false;
     private bool canWeaponFire = false;
 
     // Use this for initialization
     void Start()
     {
+        shootingGun.SetActive(false);
+        restingGun.SetActive(true);
         mainCam.enabled = true;
         gunCam.enabled = false;
     }
@@ -24,6 +27,8 @@ public class StationInteraction : MonoBehaviour
     {
         if (playerIn && Input.GetKeyDown(KeyCode.E))
         {
+            shootingGun.SetActive(!shootingGun.activeSelf);
+            restingGun.SetActive(!restingGun.activeSelf);
             mainCam.enabled = !mainCam.enabled;
             gunCam.enabled = !gunCam.enabled;
             canWeaponFire = gunCam.enabled;

@@ -18,7 +18,10 @@ public class OrbitCamera : MonoBehaviour
         _rotY = transform.eulerAngles.y;
         _offset = target.position - transform.position;
 
+        rotSpeed = PlayerPrefs.GetFloat("Mouse Speed");
+
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

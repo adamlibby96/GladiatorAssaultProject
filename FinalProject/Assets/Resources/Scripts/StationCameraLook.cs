@@ -20,6 +20,8 @@ public class StationCameraLook : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+
+        rotSpeed = PlayerPrefs.GetFloat("Mouse Speed");
         transform.localEulerAngles = new Vector3(0, 0, 0);
         origRot = transform.rotation;
 	}

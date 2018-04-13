@@ -6,6 +6,10 @@ public class ProjectileScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            Messenger.Broadcast(GameEvent.GAME_OVER);
+        }
         StartCoroutine(killMe());
     }
 
