@@ -26,11 +26,11 @@ public class BallLauncher : MonoBehaviour
         Messenger.AddListener(GameEvent.GAME_OVER, stopLaunching);
     }
 
-    void Awake()
-    {
-        Messenger.AddListener(GameEvent.GAME_START, startLaunching);
-        Messenger.AddListener(GameEvent.GAME_OVER, stopLaunching);
-    }
+    //void Awake()
+    //{
+    //    Messenger.AddListener(GameEvent.GAME_START, startLaunching);
+    //    Messenger.AddListener(GameEvent.GAME_OVER, stopLaunching);
+    //}
 
     private void OnDestroy()
     {

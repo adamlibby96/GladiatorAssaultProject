@@ -10,6 +10,10 @@ public class PlayerProjectileScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        if (gameObject.GetComponent<TrailRenderer>())
+        {
+            gameObject.GetComponent<TrailRenderer>().Clear();
+        }
         collide = false;
         
     }

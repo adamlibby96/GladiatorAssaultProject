@@ -22,6 +22,7 @@ public class OrbitCamera : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
     }
 
     // Update is called once per frame
@@ -32,6 +33,5 @@ public class OrbitCamera : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, _rotY, 0);
         transform.position = target.position - (rotation * _offset);
         transform.LookAt(target);
-
     }
 }
